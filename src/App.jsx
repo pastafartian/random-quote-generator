@@ -1,10 +1,13 @@
 import './App.css'
 import Card from './Card.jsx'
 import { TwitterShareButton, TwitterIcon} from 'react-share'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function App() {
-  const [quote, setQuote] = useState(null);
+  const [quote, setQuote] = useState({
+    author: '',
+    quote: ''
+  });
 
   function getQuote() {
     fetch("https://api.quotable.io/random")
@@ -12,13 +15,15 @@ export default function App() {
       .then((data) => setQuote(data))
       .catch((error) => console.log(error.message));
   }
-  getQuote();
 
+  useEffect(() => {
+    getQuote();
+  }, []);
 
   return (
     <div id="quote-box" className="quote-box">
       <h1>Random Quote Generator</h1>
-      <Card content={quote.content} author={quote.author} />
+      <Card quote={quote} />
       <div id="new-quote">
         <button
           onClick={getQuote}

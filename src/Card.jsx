@@ -2,12 +2,12 @@
 import './App.css'
 
 
-export default function Card( { content, author }) {
+export default function Card( { quote }) {
 
     return (
         <div>
-            <blockquote id="text">&quot;{content}&quot;</blockquote>
-            <cite id="author">-{author}</cite>
+            <blockquote id="text">&quot;{quote.content}&quot;</blockquote>
+            <cite id="author">-{quote.author}</cite>
         </div>
     );
 }
