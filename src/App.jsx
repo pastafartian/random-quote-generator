@@ -4,10 +4,7 @@ import { TwitterShareButton, TwitterIcon} from 'react-share'
 import { useState } from 'react'
 
 export default function App() {
-  const [quote, setQuote] = useState({
-    author: 'Joshua',
-    quote: 'I love you'
-  });
+  const [quote, setQuote] = useState(null);
 
   function getQuote() {
     fetch("https://api.quotable.io/random")
@@ -15,7 +12,7 @@ export default function App() {
       .then((data) => setQuote(data))
       .catch((error) => console.log(error.message));
   }
-
+  getQuote();
 
 
   return (
